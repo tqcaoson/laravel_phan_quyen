@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Services\Product;
+namespace Core\Repositories\User;
 
-interface ProductServiceContract
+interface UserRepositoryContract
 {
     public function paginate();
     public function find($id);

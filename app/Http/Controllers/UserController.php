@@ -9,28 +9,34 @@ use Spatie\Permission\Models\Role;
 use DB;
 use Hash;
 
+use Core\Services\Role\RoleServiceContract;
+use Core\Services\User\UserServiceContract;
 use App\Http\Requests\User\EditUserRequest;
 use App\Http\Requests\User\CreateUserRequest;
 
 class UserController extends Controller
 {
+    protected $serviceRole;
+    protected $serviceUser;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-    function __construct()
+    function __construct(RoleServiceContract $serviceRole, UserServiceContract $serviceUser)
     {
          $this->middleware('permission:user-list');
          $this->middleware('permission:user-create', ['only' => ['create','store']]);
          $this->middleware('permission:user-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:user-delete', ['only' => ['destroy']]);
+         $this->serviceRole = $serviceRole;
+         $this->serviceUser = $serviceUser;
     }
 
     public function index(Request $request)
     {
-        $data = User::orderBy('id','DESC')->paginate(5);
+        $data = $this->serviceUser->paginate();
         return view('users.index',compact('data'))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
@@ -43,7 +49,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = Role::pluck('name','name')->all();
+        $roles = $this->serviceRole->pluckName();
         return view('users.create',compact('roles'));
     }
 
@@ -56,11 +62,7 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        $input = $request->all();
-        $input['password'] = Hash::make($input['password']);
-
-        $user = User::create($input);
-        $user->assignRole($request->input('roles'));
+        $this->serviceUser->store($request->all());
 
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
@@ -75,7 +77,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
+        $user = $this->serviceUser->find($id);
         return view('users.show',compact('user'));
     }
 
@@ -88,8 +90,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-        $roles = Role::pluck('name','name')->all();
+        $user = $this->serviceUser->find($id);
+        $roles = $this->serviceRole->pluckName();
         $userRole = $user->roles->pluck('name','name')->all();
 
         return view('users.edit',compact('user','roles','userRole'));
@@ -105,18 +107,7 @@ class UserController extends Controller
      */
     public function update(EditUserRequest $request, $id)
     {
-        $input = $request->all();
-        if(!empty($input['password'])){ 
-            $input['password'] = Hash::make($input['password']);
-        }else{
-            $input = array_except($input,array('password'));    
-        }
-
-        $user = User::find($id);
-        $user->update($input);
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
-
-        $user->assignRole($request->input('roles'));
+        $this->serviceUser->update($id, $request->all());
 
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');
@@ -131,7 +122,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
+        $this->serviceUser->destroy($id);
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }

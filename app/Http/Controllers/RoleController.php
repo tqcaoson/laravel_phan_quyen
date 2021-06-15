@@ -4,9 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
-use DB;
 
 use Core\Services\Role\RoleServiceContract;
 use Core\Services\Permission\PermissionServiceContract;
@@ -66,9 +63,6 @@ class RoleController extends Controller
      */
     public function store(CreateRoleRequest $request)
     {
-        // $role = Role::create(['name' => $request->input('name')]);
-        // $role->syncPermissions($request->input('permission'));
-
         $this->serviceRole->store($request->all());
 
         return redirect()->route('roles.index')
@@ -114,11 +108,7 @@ class RoleController extends Controller
      */
     public function update(EditRoleRequest $request, $id)
     {
-        $role = Role::find($id);
-        $role->name = $request->input('name');
-        $role->save();
-
-        $role->syncPermissions($request->input('permission'));
+        $this->serviceRole->update($id, $request->all());
 
         return redirect()->route('roles.index')
                         ->with('success','Role updated successfully');

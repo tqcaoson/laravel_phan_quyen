@@ -5,6 +5,7 @@ namespace Core\Services\Role;
 interface RoleServiceContract
 {
     public function paginate();
+    public function pluckName();
     public function find($id);
     public function store($data);
     public function update($id, $data);

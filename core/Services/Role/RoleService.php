@@ -18,6 +18,11 @@ class RoleService implements RoleServiceContract
         return $this->repository->paginate(5);
     }
 
+    public function pluckName()
+    {
+        return $this->repository->pluckName();
+    }
+
     public function find($id)
     {
         return $this->repository->find($id);

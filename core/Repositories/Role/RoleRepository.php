@@ -3,7 +3,6 @@
 namespace Core\Repositories\Role;
 
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
 
 class RoleRepository implements RoleRepositoryContract
 {
@@ -17,6 +16,11 @@ class RoleRepository implements RoleRepositoryContract
     public function paginate()
     {
         return $this->model->latest()->paginate(5);
+    }
+
+    public function pluckName()
+    {
+        return $this->model->pluck('name','name')->all();
     }
 
     public function find($id)
@@ -33,8 +37,10 @@ class RoleRepository implements RoleRepositoryContract
 
     public function update($id, $data)
     {
-        $model = $this->find($id);
-        return $model->update($data);
+        $model = $this->model->find($id);
+        $model->update(['name' => $data['name']]);
+        $model->syncPermissions($data['permission']);
+        return $model;
     }
 
     public function destroy($id)

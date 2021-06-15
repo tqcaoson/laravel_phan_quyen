@@ -2,8 +2,10 @@
 
 namespace Core\Providers;
 
-// use Core\Services\UserService;
-// use Core\Repositories\UserRepository;
+use Core\Services\User\UserService;
+use Core\Services\User\UserServiceContract;
+use Core\Repositories\User\UserRepository;
+use Core\Repositories\User\UserRepositoryContract;
 
 use Core\Services\Role\RoleService;
 use Core\Services\Role\RoleServiceContract;
@@ -42,8 +44,8 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // $this->app->bind(UserRepositoryContract::class, UserRepository::class);
-        // $this->app->bind(UserServiceContract::class, UserService::class);
+        $this->app->bind(UserRepositoryContract::class, UserRepository::class);
+        $this->app->bind(UserServiceContract::class, UserService::class);
 
         $this->app->bind(RoleRepositoryContract::class, RoleRepository::class);
         $this->app->bind(RoleServiceContract::class, RoleService::class);

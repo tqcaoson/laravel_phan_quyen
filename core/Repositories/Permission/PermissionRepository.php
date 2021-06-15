@@ -50,7 +50,7 @@ class PermissionRepository implements PermissionRepositoryContract
 
     public function update($id, $data)
     {
-        $model = $this->find($id);
+        $model = $this->model->find($id);
         return $model->update($data);
     }
 

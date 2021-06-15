@@ -1,14 +1,14 @@
 <?php
 
-namespace Core\Services\Product;
+namespace Core\Services\User;
 
-use Core\Repositories\Product\ProductRepositoryContract;
+use Core\Repositories\User\UserRepositoryContract;
 
-class ProductService implements ProductServiceContract
+class UserService implements UserServiceContract
 {
     protected $repository;
 
-    public function __construct(ProductRepositoryContract $repository)
+    public function __construct(UserRepositoryContract $repository)
     {
         return $this->repository = $repository;
     }
