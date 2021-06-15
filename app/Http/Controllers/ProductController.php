@@ -1,12 +1,12 @@
 <?php
 
-
 namespace App\Http\Controllers;
-
 
 use App\Product;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\Product\EditProductRequest;
+use App\Http\Requests\Product\CreateProductRequest;
 
 class ProductController extends Controller
 { 
@@ -52,16 +52,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateProductRequest $request)
     {
-        request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
-        ]);
-
-
         Product::create($request->all());
-
 
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
@@ -99,16 +92,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(EditProductRequest $request, Product $product)
     {
-         request()->validate([
-            'name' => 'required',
-            'detail' => 'required',
-        ]);
-
 
         $product->update($request->all());
-
 
         return redirect()->route('products.index')
                         ->with('success','Product updated successfully');
@@ -124,7 +111,6 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         $product->delete();
-
 
         return redirect()->route('products.index')
                         ->with('success','Product deleted successfully');
