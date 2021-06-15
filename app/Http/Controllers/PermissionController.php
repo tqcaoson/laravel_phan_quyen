@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Spatie\Permission\Models\Permission;
-use DB;
 
 use Core\Services\Permission\PermissionServiceContract;
 use App\Http\Requests\Permission\EditPermissionRequest;

@@ -5,22 +5,25 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 
+use Core\Services\Product\ProductServiceContract;
 use App\Http\Requests\Product\EditProductRequest;
 use App\Http\Requests\Product\CreateProductRequest;
 
 class ProductController extends Controller
 { 
+    protected $service;
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    function __construct()
+    function __construct(ProductServiceContract $service)
     {
          $this->middleware('permission:product-list');
          $this->middleware('permission:product-create', ['only' => ['create','store']]);
          $this->middleware('permission:product-edit', ['only' => ['edit','update']]);
          $this->middleware('permission:product-delete', ['only' => ['destroy']]);
+         $this->service = $service;
     }
     /**
      * Display a listing of the resource.
@@ -29,7 +32,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::latest()->paginate(5);
+        $products = $this->service->paginate();
         return view('products.index',compact('products'))
             ->with('i', (request()->input('page', 1) - 1) * 5);
     }
@@ -54,7 +57,7 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-        Product::create($request->all());
+        $this->service->store($request->all());
 
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
@@ -67,8 +70,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
+        $product = $this->service->find($id);
         return view('products.show',compact('product'));
     }
 
@@ -79,8 +83,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($id)
     {
+        $product = $this->service->find($id);
         return view('products.edit',compact('product'));
     }
 
@@ -92,10 +97,10 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(EditProductRequest $request, Product $product)
+    public function update(EditProductRequest $request, $id)
     {
 
-        $product->update($request->all());
+        $this->service->update($id, $request->all());
 
         return redirect()->route('products.index')
                         ->with('success','Product updated successfully');
@@ -108,9 +113,9 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        $product->delete();
+        $this->service->destroy($id);
 
         return redirect()->route('products.index')
                         ->with('success','Product deleted successfully');
