@@ -1,12 +1,9 @@
 <?php
 
-namespace Core\Services\Permission;
+namespace Core\Services\Role;
 
-interface PermissionServiceContract
+interface RoleServiceContract
 {
-    public function all();
-    public function byRoleShow($id);
-    public function byRoleEdit($id);
     public function paginate();
     public function find($id);
     public function store($data);

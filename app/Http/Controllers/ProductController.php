@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Product;
 use Illuminate\Http\Request;
 
 use Core\Services\Product\ProductServiceContract;
