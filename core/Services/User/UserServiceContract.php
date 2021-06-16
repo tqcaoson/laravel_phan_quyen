@@ -1,12 +1,9 @@
 <?php
 
 namespace Core\Services\User;
+use Core\Services\ServiceInterface;
 
-interface UserServiceContract
+interface UserServiceContract extends ServiceInterface
 {
-    public function paginate();
-    public function find($id);
-    public function store($data);
-    public function update($id, $data);
-    public function destroy($id);
+    
 }

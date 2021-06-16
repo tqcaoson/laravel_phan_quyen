@@ -1,13 +1,9 @@
 <?php
 
 namespace Core\Repositories\Role;
+use Core\Repositories\RepositoryInterface;
 
-interface RoleRepositoryContract
+interface RoleRepositoryContract extends RepositoryInterface
 {
-    public function paginate();
     public function pluckName();
-    public function find($id);
-    public function store($data);
-    public function update($id, $data);
-    public function destroy($id);
 }

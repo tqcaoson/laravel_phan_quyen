@@ -1,13 +1,9 @@
 <?php
 
 namespace Core\Services\Role;
+use Core\Services\ServiceInterface;
 
-interface RoleServiceContract
+interface RoleServiceContract extends ServiceInterface
 {
-    public function paginate();
     public function pluckName();
-    public function find($id);
-    public function store($data);
-    public function update($id, $data);
-    public function destroy($id);
 }

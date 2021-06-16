@@ -1,12 +1,9 @@
 <?php
 
 namespace Core\Repositories\User;
+use Core\Repositories\RepositoryInterface;
 
-interface UserRepositoryContract
+interface UserRepositoryContract extends RepositoryInterface
 {
-    public function paginate();
-    public function find($id);
-    public function store($data);
-    public function update($id, $data);
-    public function destroy($id);
+
 }

@@ -1,12 +1,9 @@
 <?php
 
 namespace Core\Services\Product;
+use Core\Services\ServiceInterface;
 
-interface ProductServiceContract
+interface ProductServiceContract extends ServiceInterface
 {
-    public function paginate();
-    public function find($id);
-    public function store($data);
-    public function update($id, $data);
-    public function destroy($id);
+    
 }

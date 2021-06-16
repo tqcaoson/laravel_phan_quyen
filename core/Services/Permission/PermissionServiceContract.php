@@ -1,13 +1,9 @@
 <?php
 
 namespace Core\Services\Permission;
+use Core\Services\ServiceInterface;
 
-interface PermissionServiceContract
+interface PermissionServiceContract extends ServiceInterface
 {
     public function all();
-    public function paginate();
-    public function find($id);
-    public function store($data);
-    public function update($id, $data);
-    public function destroy($id);
 }
