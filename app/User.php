@@ -14,7 +14,6 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoles;
 
-
     /**
      * The attributes that are mass assignable.
      *
@@ -33,4 +32,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    protected $primaryKey = 'id';
+ 	protected $table = 'users';
 }
