@@ -3,7 +3,6 @@
 namespace Core\Repositories\Permission;
 use Core\Repositories\BaseRepository;
 use Spatie\Permission\Models\Permission;
-use DB;
 
 class PermissionRepository extends BaseRepository implements PermissionRepositoryContract
 {

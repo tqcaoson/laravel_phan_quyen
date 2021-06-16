@@ -22,12 +22,6 @@ use Core\Services\Product\ProductServiceContract;
 use Core\Repositories\Product\ProductRepository;
 use Core\Repositories\Product\ProductRepositoryContract;
 
-use Core\Services\BaseService;
-use Core\Services\ServiceInterface;
-use Core\Repositories\BaseRepository;
-use Core\Repositories\RepositoryInterface;
-
-
 use Illuminate\Support\ServiceProvider;
 
 class CoreServiceProvider extends ServiceProvider
@@ -49,9 +43,6 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(RepositoryInterface::class, BaseRepository::class);
-        $this->app->bind(ServiceInterface::class, BaseService::class);
-
         $this->app->bind(UserRepositoryContract::class, UserRepository::class);
         $this->app->bind(UserServiceContract::class, UserService::class);
 
