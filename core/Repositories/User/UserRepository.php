@@ -44,8 +44,8 @@ class UserRepository implements UserRepositoryContract
 
         $model = $this->model->find($id);
         $model->update($data);
-        
-        DB::table('model_has_roles')->where('model_id',$id)->delete();
+
+        $model->roles()->detach();
 
         $model->assignRole($data['roles']);
         return $model;
@@ -53,7 +53,8 @@ class UserRepository implements UserRepositoryContract
 
     public function destroy($id)
     {
-        return $this->model->destroy($id);
+        $model = $this->model->find($id);
+        return $model->delete();
     }
 
 }

@@ -18,16 +18,6 @@ class PermissionService implements PermissionServiceContract
         return $this->repository->all();
     }
 
-    public function byRoleShow($id)
-    {
-        return $this->repository->byRoleShow($id);
-    }
-
-    public function byRoleEdit($id)
-    {
-        return $this->repository->byRoleEdit($id);
-    }
-
     public function paginate()
     {
         return $this->repository->paginate();

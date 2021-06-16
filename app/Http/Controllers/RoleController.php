@@ -77,7 +77,7 @@ class RoleController extends Controller
     public function show($id)
     {
         $role = $this->serviceRole->find($id);
-        $rolePermissions = $this->servicePermission->byRoleShow($id);
+        $rolePermissions = $role->permissions;
 
         return view('roles.show',compact('role','rolePermissions'));
     }
@@ -93,7 +93,7 @@ class RoleController extends Controller
     {
         $role = $this->serviceRole->find($id);
         $permission = $this->servicePermission->all();
-        $rolePermissions = $this->servicePermission->byRoleEdit($id);
+        $rolePermissions = $role->permissions->pluck('id')->toArray();
 
         return view('roles.edit',compact('role','permission','rolePermissions'));
     }

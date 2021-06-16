@@ -45,7 +45,8 @@ class RoleRepository implements RoleRepositoryContract
 
     public function destroy($id)
     {
-        return $this->model->destroy($id);
+        $model = $this->model->find($id);
+        return $model->delete();
     }
 
 }
