@@ -3,8 +3,9 @@
 namespace Core\Services\User;
 
 use Core\Repositories\User\UserRepositoryContract;
+use Core\Services\BaseService;
 
-class UserService implements UserServiceContract
+class UserService extends BaseService implements UserServiceContract
 {
     protected $repository;
 
@@ -12,30 +13,4 @@ class UserService implements UserServiceContract
     {
         return $this->repository = $repository;
     }
-
-    public function paginate()
-    {
-        return $this->repository->paginate(5);
-    }
-
-    public function find($id)
-    {
-        return $this->repository->find($id);
-    }
-
-    public function store($data)
-    {
-        return $this->repository->store($data);
-    }
-
-    public function update($id, $data)
-    {
-        return $this->repository->update($id, $data);
-    }
-
-    public function destroy($id)
-    {
-        return $this->repository->destroy($id);
-    }
-
 }

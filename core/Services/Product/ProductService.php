@@ -3,8 +3,9 @@
 namespace Core\Services\Product;
 
 use Core\Repositories\Product\ProductRepositoryContract;
+use Core\Services\BaseService; 
 
-class ProductService implements ProductServiceContract
+class ProductService extends BaseService implements ProductServiceContract
 {
     protected $repository;
 
@@ -12,30 +13,4 @@ class ProductService implements ProductServiceContract
     {
         return $this->repository = $repository;
     }
-
-    public function paginate()
-    {
-        return $this->repository->paginate(5);
-    }
-
-    public function find($id)
-    {
-        return $this->repository->find($id);
-    }
-
-    public function store($data)
-    {
-        return $this->repository->store($data);
-    }
-
-    public function update($id, $data)
-    {
-        return $this->repository->update($id, $data);
-    }
-
-    public function destroy($id)
-    {
-        return $this->repository->destroy($id);
-    }
-
 }

@@ -3,8 +3,9 @@
 namespace Core\Services\Permission;
 
 use Core\Repositories\Permission\PermissionRepositoryContract;
+use Core\Services\BaseService;
 
-class PermissionService implements PermissionServiceContract
+class PermissionService extends BaseService implements PermissionServiceContract
 {
     protected $repository;
 
@@ -16,31 +17,6 @@ class PermissionService implements PermissionServiceContract
     public function all() 
     {
         return $this->repository->all();
-    }
-
-    public function paginate()
-    {
-        return $this->repository->paginate();
-    }
-
-    public function find($id)
-    {
-        return $this->repository->find($id);
-    }
-
-    public function store($data)
-    {
-        return $this->repository->store($data);
-    }
-
-    public function update($id, $data)
-    {
-        return $this->repository->update($id, $data);
-    }
-
-    public function destroy($id)
-    {
-        return $this->repository->destroy($id);
     }
 
 }
