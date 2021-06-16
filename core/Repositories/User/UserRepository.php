@@ -1,28 +1,17 @@
 <?php
 
 namespace Core\Repositories\User;
-
+use Core\Repositories\BaseRepository;
 use App\User;
-use DB;
 use Hash;
 
-class UserRepository implements UserRepositoryContract
+class UserRepository extends BaseRepository implements UserRepositoryContract
 {
     protected $model;
 
     public function __construct(User $model)
     {
         return $this->model = $model;
-    }
-
-    public function paginate()
-    {
-        return $this->model->latest()->paginate(5);
-    }
-
-    public function find($id)
-    {
-        return $this->model->find($id);
     }
 
     public function store($data)
@@ -49,12 +38,6 @@ class UserRepository implements UserRepositoryContract
 
         $model->assignRole($data['roles']);
         return $model;
-    }
-
-    public function destroy($id)
-    {
-        $model = $this->model->find($id);
-        return $model->delete();
     }
 
 }
