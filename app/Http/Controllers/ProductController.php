@@ -56,7 +56,7 @@ class ProductController extends Controller
      */
     public function store(CreateProductRequest $request)
     {
-        $this->service->store($request->all());
+        $this->service->store($request->only(['name', 'detail']));
 
         return redirect()->route('products.index')
                         ->with('success','Product created successfully.');
@@ -99,7 +99,7 @@ class ProductController extends Controller
     public function update(EditProductRequest $request, $id)
     {
 
-        $this->service->update($id, $request->all());
+        $this->service->update($id, $request->only(['name', 'detail']));
 
         return redirect()->route('products.index')
                         ->with('success','Product updated successfully');

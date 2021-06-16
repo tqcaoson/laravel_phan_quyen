@@ -63,7 +63,7 @@ class RoleController extends Controller
      */
     public function store(CreateRoleRequest $request)
     {
-        $this->serviceRole->store($request->all());
+        $this->serviceRole->store($request->only(['name', 'permission']));
 
         return redirect()->route('roles.index')
                         ->with('success','Role created successfully');
@@ -108,7 +108,7 @@ class RoleController extends Controller
      */
     public function update(EditRoleRequest $request, $id)
     {
-        $this->serviceRole->update($id, $request->all());
+        $this->serviceRole->update($id, $request->only(['name', 'permission']));
 
         return redirect()->route('roles.index')
                         ->with('success','Role updated successfully');

@@ -58,7 +58,12 @@ class UserController extends Controller
      */
     public function store(CreateUserRequest $request)
     {
-        $this->serviceUser->store($request->all());
+        $this->serviceUser->store($request->only([
+            'name', 
+            'email',
+            'password',
+            'roles'
+        ]));
 
         return redirect()->route('users.index')
                         ->with('success','User created successfully');
@@ -103,7 +108,11 @@ class UserController extends Controller
      */
     public function update(EditUserRequest $request, $id)
     {
-        $this->serviceUser->update($id, $request->all());
+        $this->serviceUser->update($id, $request->only([
+            'name', 
+            'password',
+            'roles'
+        ]));
 
         return redirect()->route('users.index')
                         ->with('success','User updated successfully');
