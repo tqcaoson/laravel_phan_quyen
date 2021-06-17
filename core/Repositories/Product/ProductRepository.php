@@ -2,7 +2,7 @@
 
 namespace Core\Repositories\Product;
 use Core\Repositories\BaseRepository;
-use App\Product;
+use App\Models\Product;
 
 class ProductRepository extends BaseRepository implements ProductRepositoryContract
 {

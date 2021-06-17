@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Role;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class CreateRoleRequest extends FormRequest
 {
@@ -13,7 +14,9 @@ class CreateRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if(Auth::user()->can('role-create'))
+            return true;
+        return false;
     }
 
     /**
@@ -26,6 +29,15 @@ class CreateRoleRequest extends FormRequest
         return [
             'name' => 'required|unique:roles,name',
             'permission' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên vai trò không được trống',
+            'name.unique' => 'Vai trò đã tồn tại',
+            'permission.required' => 'Quyền không được trống'
         ];
     }
 }

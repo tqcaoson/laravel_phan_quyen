@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Product;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EditProductRequest extends FormRequest
 {
@@ -13,7 +14,9 @@ class EditProductRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if(Auth::user()->can('product-edit'))
+            return true;
+        return false;
     }
 
     /**
@@ -26,6 +29,14 @@ class EditProductRequest extends FormRequest
         return [
             'name' => 'required',
             'detail' => 'required',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên sản phẩm không được trống',
+            'detail.required' => 'Chi tiết sản phẩm không được trống'
         ];
     }
 }

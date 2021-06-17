@@ -3,6 +3,7 @@
 namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EditUserRequest extends FormRequest
 {
@@ -13,7 +14,9 @@ class EditUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if(Auth::user()->can('user-edit'))
+            return true;
+        return false;
     }
 
     /**
@@ -25,9 +28,17 @@ class EditUserRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email',
             'password' => 'same:confirm_password',
             'roles' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên người dùng  không được trống',
+            'password.same' => 'Password nhập lại không khớp',
+            'roles.required' => 'Vai trò không được trống'
         ];
     }
 }

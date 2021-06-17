@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Permission;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class EditPermissionRequest extends FormRequest
 {
@@ -13,7 +14,9 @@ class EditPermissionRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        if(Auth::user()->can('permission-edit'))
+            return true;
+        return false;
     }
 
     /**
@@ -25,6 +28,14 @@ class EditPermissionRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:permissions,name',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Tên quyền không được trống',
+            'name.unique' => 'Quyền đã tồn tại'
         ];
     }
 }
