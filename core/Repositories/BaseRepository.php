@@ -7,6 +7,11 @@ class BaseRepository implements RepositoryInterface
 {
     protected $model;
 
+    public function all() 
+    {
+        return $this->model->all();
+    }
+
     public function paginate()
     {
         return $this->model->latest()->paginate(5);

@@ -14,9 +14,4 @@ class PermissionService extends BaseService implements PermissionServiceContract
         return $this->repository = $repository;
     }
 
-    public function all() 
-    {
-        return $this->repository->all();
-    }
-
 }

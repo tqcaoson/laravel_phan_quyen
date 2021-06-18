@@ -4,6 +4,7 @@ namespace Core\Services;
 
 interface ServiceInterface
 {
+    public function all();
     public function paginate();
     public function find($id);
     public function store($data);

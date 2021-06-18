@@ -47,7 +47,7 @@ class PermissionController extends Controller
      */
     public function create()
     {
-        return view('permissions.create');
+
     }
 
 
@@ -71,9 +71,7 @@ class PermissionController extends Controller
      */
     public function show($id)
     {
-        $permission = $this->service->find($id);
 
-        return view('permissions.show',compact('permission'));
     }
 
 
@@ -85,9 +83,7 @@ class PermissionController extends Controller
      */
     public function edit($id)
     {
-        $permission = $this->service->find($id);
 
-        return view('permissions.edit',compact('permission'));
     }
 
 

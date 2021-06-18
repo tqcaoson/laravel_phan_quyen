@@ -33,7 +33,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $data = $this->serviceUser->paginate();
-        return view('users.index',compact('data'))
+        $roles = $this->serviceRole->all();
+        return view('users.index',compact(['data', 'roles']))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

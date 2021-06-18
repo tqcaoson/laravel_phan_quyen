@@ -13,8 +13,4 @@ class PermissionRepository extends BaseRepository implements PermissionRepositor
         return $this->model = $model;
     }
 
-    public function all() 
-    {
-        return $this->model->all();
-    }
 }

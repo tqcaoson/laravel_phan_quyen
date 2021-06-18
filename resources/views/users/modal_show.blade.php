@@ -16,6 +16,22 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                    <strong>Email:</strong>
+                    <span id="email"></span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6">
+                <div class="form-group">
+                    <strong>Roles:</strong>
+                    <span id="roles"></span>
+                </div>
+            </div>
+        </div>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

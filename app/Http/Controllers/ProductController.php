@@ -44,7 +44,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+
     }
 
 
@@ -71,8 +71,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = $this->service->find($id);
-        return view('products.show',compact('product'));
+
     }
 
 
@@ -84,8 +83,7 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = $this->service->find($id);
-        return view('products.edit',compact('product'));
+
     }
 
 

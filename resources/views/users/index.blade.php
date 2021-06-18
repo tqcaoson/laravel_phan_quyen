@@ -8,7 +8,9 @@
             <h2>Users Management</h2>
         </div>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
+        @can('user-create')
+          <a class="btn btn-success add-modal" data-toggle="modal" data-target="#modal-edit" data-role="{{ $roles }}" data-data="{{ route('users.store') }}"> Create New User</a>
+        @endcan
         </div>
     </div>
 </div>
@@ -18,6 +20,17 @@
 <div class="alert alert-success">
   <p>{{ $message }}</p> 
 </div>
+@endif
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        </ul>
+    </div>
 @endif
 
 
@@ -42,9 +55,9 @@
       @endif
     </td>
     <td>
-       <a class="btn btn-info" href="{{ route('users.show',$user->id) }}">Show</a>
+        <a class="btn btn-info show-modal" data-toggle="modal" data-target="#modal-show" data-userrole="{{ $user->getRoleNames() }}" data-data="{{ $user }}" href="#">Show</a>
         @can('user-edit')
-          <a class="btn btn-primary" href="{{ route('users.edit',$user->id) }}">Edit</a>
+          <a class="btn btn-primary edit-modal" data-toggle="modal" data-target="#modal-edit" data-userrole="{{ $user->getRoleNames() }}" data-role="{{ $roles }}" data-data="{{ $user }}" href="#">Edit</a>
         @endcan
         @can('user-delete')
           {!! Form::open(['method' => 'DELETE','route' => ['users.destroy', $user->id],'style'=>'display:inline']) !!}
@@ -59,5 +72,8 @@
 
 {!! $data->render() !!}
 
+@include('users.script')
+@include('users.modal')
+@include('users.modal_show')
 
 @endsection

@@ -4,6 +4,7 @@ namespace Core\Repositories;
 
 interface RepositoryInterface
 {
+    public function all();
     public function paginate();
     public function find($id);
     public function store($data);

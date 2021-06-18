@@ -19,6 +19,39 @@
                 </div>
             </div>
         </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Email (<span>*</span>):</strong>
+                    <input class="form-control" type="text" value=""  name="email" id="email">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Password (<span>*</span>):</strong>
+                    <input class="form-control" type="password" value=""  name="password" id="password">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Confirm Password (<span>*</span>):</strong>
+                    <input class="form-control" type="password" value=""  name="confirm_password" id="confirm_password">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-12">
+                <div class="form-group">
+                    <strong>Roles (<span>*</span>):</strong>
+                    <select multiple="multiple" class="form-control" name="roles" id="roles">
+                    </select>
+                </div>
+            </div>
+        </div>
         <div class="col-xs-12 col-sm-12 col-md-12 mt-3 text-center">
               <button id="submit" type="submit" class="btn btn-primary">Add</button>
           </div>

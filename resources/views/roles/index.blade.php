@@ -41,7 +41,7 @@
      <th width="280px">Action</th>
   </tr>
     @foreach ($roles as $key => $role)
-    <tr>
+    <tr> 
         <td>{{ ++$i }}</td>
         <td>{{ $role->name }}</td>
         <td>

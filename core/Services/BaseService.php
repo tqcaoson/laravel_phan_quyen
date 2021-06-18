@@ -9,6 +9,11 @@ class BaseService implements ServiceInterface
 {
     protected $repository;
 
+    public function all() 
+    {
+        return $this->repository->all();
+    }
+
     public function paginate()
     {
         return $this->repository->paginate();
