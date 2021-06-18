@@ -49,10 +49,10 @@
         let per = $(this).data('permission'); 
         let arrRoleper = [];
         $.each($(this).data('rolepermission'), function (key, value) {
-            arrRoleper.push(value.id);
+            arrRoleper[value.id] = 1;
         });
         $.each(per, function (key, value) {
-            let checked = (arrRoleper.includes(value.id)) ? "checked" : "";
+            let checked = (typeof arrRoleper[value.id] !== 'undefined') ? "checked" : "";
             $(`#permission`).append(`
                 <label>
                     <input type="checkbox" ${checked} value="${value.id}" name="permission[]">

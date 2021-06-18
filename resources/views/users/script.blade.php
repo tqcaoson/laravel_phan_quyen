@@ -45,10 +45,10 @@
         let role = $(this).data('role'); 
         let arrUserrole = [];
         $.each($(this).data('userrole'), function (key, value) {
-            arrUserrole.push(value);
+            arrUserrole[value] = 1;
         });
         $.each(role, function (key, value) {
-            let selected = (arrUserrole.includes(value.name)) ? "selected" : "";
+            let selected = (typeof arrUserrole[value.name] !== 'undefined') ? "selected" : "";
             $(`#roles`).append(`
                 <option ${selected} value="${value.name}">${value.name}</option>
             `);
