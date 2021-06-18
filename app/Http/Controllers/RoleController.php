@@ -38,7 +38,8 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         $roles = $this->serviceRole->paginate();
-        return view('roles.index',compact('roles'))
+        $permissions = $this->servicePermission->all();
+        return view('roles.index',compact(['roles', 'permissions']))
             ->with('i', ($request->input('page', 1) - 1) * 5);
     }
 

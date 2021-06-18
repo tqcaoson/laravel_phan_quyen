@@ -9,8 +9,8 @@
         </div>
         <div class="pull-right">
         @can('role-create')
-            <a class="btn btn-success" href="{{ route('roles.create') }}"> Create New Role</a>
-            @endcan
+            <a class="btn btn-success add-modal" data-toggle="modal" data-target="#modal-edit" data-permission="{{ $permissions }}" data-data="{{ route('roles.store')}}"> Create New Role</a>
+         @endcan
         </div>
     </div>
 </div>
@@ -19,6 +19,17 @@
 @if ($message = Session::get('success'))
     <div class="alert alert-success">
         <p>{{ $message }}</p>
+    </div>
+@endif
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <strong>Whoops!</strong> There were some problems with your input.<br><br>
+        <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+        </ul>
     </div>
 @endif
 
@@ -34,9 +45,9 @@
         <td>{{ ++$i }}</td>
         <td>{{ $role->name }}</td>
         <td>
-            <a class="btn btn-info" href="{{ route('roles.show',$role->id) }}">Show</a>
+            <a class="btn btn-info show-modal" data-toggle="modal" data-target="#modal-show" data-rolepermission="{{ $role->permissions }}" data-data="{{ $role }}" href="#">Show</a>
             @can('role-edit')
-                <a class="btn btn-primary" href="{{ route('roles.edit',$role->id) }}">Edit</a>
+                <a class="btn btn-primary edit-modal" data-toggle="modal" data-target="#modal-edit" data-rolepermission="{{ $role->permissions }}" data-permission="{{ $permissions }}" data-data="{{ $role }}" href="#">Edit</a>
             @endcan
             @can('role-delete')
                 {!! Form::open(['method' => 'DELETE','route' => ['roles.destroy', $role->id],'style'=>'display:inline']) !!}
@@ -51,5 +62,8 @@
 
 {!! $roles->render() !!}
 
+@include('roles.script')
+@include('roles.modal')
+@include('roles.modal_show')
 
 @endsection

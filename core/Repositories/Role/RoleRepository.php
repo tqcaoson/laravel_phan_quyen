@@ -13,6 +13,11 @@ class RoleRepository extends BaseRepository implements RoleRepositoryContract
         return $this->model = $model;
     }
 
+    public function paginate()
+    {
+        return $this->model->latest()->with('permissions')->paginate(5);
+    }
+
     public function pluckName()
     {
         return $this->model->pluck('name','name')->all();
