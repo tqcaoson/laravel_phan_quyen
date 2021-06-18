@@ -46,8 +46,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        $roles = $this->serviceRole->pluckName();
-        return view('users.create',compact('roles'));
+
     }
 
 
@@ -79,8 +78,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = $this->serviceUser->find($id);
-        return view('users.show',compact('user'));
+
     }
 
 
@@ -92,11 +90,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = $this->serviceUser->find($id);
-        $roles = $this->serviceRole->pluckName();
-        $userRole = $user->roles->pluck('name','name')->all();
 
-        return view('users.edit',compact('user','roles','userRole'));
     }
 
 
