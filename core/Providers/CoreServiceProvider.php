@@ -43,16 +43,16 @@ class CoreServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(UserRepositoryContract::class, UserRepository::class);
-        $this->app->bind(UserServiceContract::class, UserService::class);
+        $this->app->singleton(UserRepositoryContract::class, UserRepository::class);
+        $this->app->singleton(UserServiceContract::class, UserService::class);
 
-        $this->app->bind(RoleRepositoryContract::class, RoleRepository::class);
-        $this->app->bind(RoleServiceContract::class, RoleService::class);
+        $this->app->singleton(RoleRepositoryContract::class, RoleRepository::class);
+        $this->app->singleton(RoleServiceContract::class, RoleService::class);
 
-        $this->app->bind(PermissionRepositoryContract::class, PermissionRepository::class);
-        $this->app->bind(PermissionServiceContract::class, PermissionService::class);
+        $this->app->singleton(PermissionRepositoryContract::class, PermissionRepository::class);
+        $this->app->singleton(PermissionServiceContract::class, PermissionService::class);
 
-        $this->app->bind(ProductRepositoryContract::class, ProductRepository::class);
-        $this->app->bind(ProductServiceContract::class, ProductService::class);
+        $this->app->singleton(ProductRepositoryContract::class, ProductRepository::class);
+        $this->app->singleton(ProductServiceContract::class, ProductService::class);
     }
 }
