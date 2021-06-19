@@ -5,7 +5,7 @@ use Core\Services\ServiceInterface;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
-class BaseService implements ServiceInterface
+abstract class BaseService implements ServiceInterface
 {
     protected $repository;
 

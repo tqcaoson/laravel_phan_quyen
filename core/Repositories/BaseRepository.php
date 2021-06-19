@@ -3,7 +3,7 @@
 namespace Core\Repositories;
 use Core\Repositories\RepositoryInterface;
 
-class BaseRepository implements RepositoryInterface
+abstract class BaseRepository implements RepositoryInterface
 {
     protected $model;
 
