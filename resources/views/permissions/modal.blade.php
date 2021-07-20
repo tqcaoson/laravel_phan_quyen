@@ -8,14 +8,14 @@
         </button>
       </div>
       <div class="modal-body">
-    <form action="#" method="post" id="formId">
+    <form action="#" method="post" id="formId" class="validate_form">
         @csrf
         <input name="_method" type="hidden" value="">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
                     <strong>Name (<span>*</span>):</strong>
-                    <input class="form-control" type="text" value=""  name="name" id="name">
+                    <input class="form-control" type="text" value=""  name="name" id="name" required data-parsley-pattern="[a-zA-Z]+$" data-parsley-trigger="keyup">
                 </div>
             </div>
         </div>

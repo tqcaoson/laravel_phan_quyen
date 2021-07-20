@@ -10,6 +10,7 @@
         $('#formId').trigger('reset');
         $("input[name=_method]").val('');
         $('textarea[name=detail]').val('');
+        $('#formId').parsley().reset();
     }
     $(document).on('click','.show-modal', function (event) {
         event.preventDefault();

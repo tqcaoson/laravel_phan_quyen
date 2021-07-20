@@ -20,6 +20,7 @@
         $('#formId').trigger('reset');
         $("input[name=_method]").val('');
         $(`#permission`).html('');
+        $('#formId').parsley().reset();
     }
     $(document).on('click','.show-modal', function (event) {
         event.preventDefault();

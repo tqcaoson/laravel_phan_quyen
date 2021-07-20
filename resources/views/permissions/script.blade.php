@@ -9,6 +9,7 @@
     function reset_form() {
         $('#formId').trigger('reset');
         $("input[name=_method]").val('');
+        $('#formId').parsley().reset();
     }
     $(document).on('click','.show-modal', function (event) {
         event.preventDefault();

@@ -16,6 +16,7 @@
         $('#formId').trigger('reset');
         $("input[name=_method]").val('');
         $(`#roles`).html('');
+        $('#formId').parsley().reset();
     }
     $(document).on('click','.show-modal', function (event) {
         event.preventDefault();
