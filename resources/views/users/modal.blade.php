@@ -30,8 +30,8 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="form-group">
-                    <strong>Password (<span>*</span>):</strong>
-                    <input class="form-control" type="password" value=""  name="password" id="password" required data-parsley-pattern="[a-zA-Z0-9]+$" data-parsley-trigger="keyup">
+                    <strong>Password (<span>*</span>):</strong> 
+                    <input class="form-control" type="password" value=""  name="password" id="password" data-parsley-pattern="[a-zA-Z0-9]+$" data-parsley-trigger="keyup">
                 </div>
             </div>
         </div>

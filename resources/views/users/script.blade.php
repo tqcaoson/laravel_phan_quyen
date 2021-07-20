@@ -5,6 +5,8 @@
         $('#formId').attr('action', url);
         $('#submit').html('Add');
         $('.modal-title').text('Add user');
+        $('#password').attr({"required" : true});
+        $('#confirm_password').attr({"required" : true});
         let data = $(this).data('role');
         $.each(data, function (key, value) {
             $(`#roles`).append(`
@@ -25,7 +27,7 @@
         $.each(data, function (key, value) {
             $(`#modal-show #${key}`).text(value);
         });      
-        let roles = $(this).data('userrole'); 
+        let roles = $(this).data('userrole');  
         let str = "";
         $.each(roles, function (key, value) {
             str += value + ", ";
@@ -40,6 +42,8 @@
         let url = `users/${data.id}`;
         $('#formId').attr('action', url);
         $('.modal-title').text('Edit user');
+        $('#password').removeAttr("required");
+        $('#confirm_password').removeAttr("required");
         $.each(data, function(key, value){
             $(`input[name=${key}]`).val(value);
         });
